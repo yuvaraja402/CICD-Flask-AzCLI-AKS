@@ -1,1 +1,1 @@
-# CICD-Flask-AzCLI-AKS
+# CICD-Flask-Terraform-AKS
