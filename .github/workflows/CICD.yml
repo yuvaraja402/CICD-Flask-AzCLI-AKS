@@ -16,19 +16,19 @@ jobs:
         uses: actions/checkout@v4
 
       # Update GitHub Actions runner
-      - name: Update GitHub runner
-        run: sudo apt-get update -y && sudo apt-get upgrade -y
+      #- name: Update GitHub runner
+      #  run: sudo apt-get update -y && sudo apt-get upgrade -y
 
       # Login to Docker Hub using authentication token
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       # Build Docker image and push
-      - name: Build Docker image and push
-        run: docker buildx create --use && docker buildx build --platform linux/arm64,linux/amd64 --push -t cyberprince/flaskverapp:v1 .
+      #- name: Build Docker image and push
+      #  run: docker buildx create --use && docker buildx build --platform linux/arm64,linux/amd64 --push -t cyberprince/flaskverapp:v1 .
 
-      - name: Logging to Azure RM through CLI
-        run: az login --username ${{secrets.CLIENT_ID}} --pass ${{secrets.CLIENT_SECRET}}
+      - name: Logging to Azure Resource Manager through CLI
+        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
 
       - name: Creating Azure resources RG + AKS
         run: |
