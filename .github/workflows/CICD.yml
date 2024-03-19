@@ -28,7 +28,7 @@ jobs:
       #  run: docker buildx create --use && docker buildx build --platform linux/arm64,linux/amd64 --push -t cyberprince/flaskverapp:v1 .
 
       - name: Logging to Azure Resource Manager through CLI
-        run: az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+        run: az login --service-principal -u "${{ secrets.CLIENT_ID }}" -p "${{ secrets.CLIENT_SECRET }}" --tenant "${{ secrets.TENANT_ID }}"
 
       - name: Creating Azure resources RG + AKS
         run: |
